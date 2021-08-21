@@ -17,8 +17,10 @@ use App\Http\Controllers\TestosController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
+Route::get("/index", 'UsersController@index', function() {
+	return view("index");  
+});
+// Route::get('/index', 'UsersController@index');
 Route::get('/testo', function () {
     return view('testo');
 });
