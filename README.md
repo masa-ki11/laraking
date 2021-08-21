@@ -70,3 +70,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 URL
 順位
 レビュー数
+
+composer require nesbot/carbon
+composer update
+composer install
+
+php artisan schedule:run
