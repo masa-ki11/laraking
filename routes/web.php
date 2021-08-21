@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,10 @@ Route::get("/index", 'UsersController@index', function() {
 Route::get('/testo', function () {
     return view('testo');
 });
+
+Route::get('/testo', function () {
+    return view('testo');
+});
+
+// API用
+Route::get('/ooo', [TestosController::class, 'index']);
