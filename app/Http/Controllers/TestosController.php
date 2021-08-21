@@ -69,9 +69,9 @@ class TestosController extends Controller
             echo 'Error:'.$response->getMessage();
         }
 
-        DB::table('tests')->insert([
-            'title' => 'testa',
-        ]);
+        // DB::table('tests')->insert([
+        //     'title' => 'testa',
+        // ]);
 
         return view('testo', compact('response'));
 
