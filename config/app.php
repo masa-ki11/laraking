@@ -231,4 +231,8 @@ return [
 
     ],
 
+    // envからAPIアプリIDを持ってくる
+    'rakuten_id' => env('RAKUTEN_APPLICATION_ID', false),
+
+
 ];
