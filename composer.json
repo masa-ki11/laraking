@@ -13,7 +13,7 @@
         "laravel/tinker": "^2.5",
 
         "laravel/ui": "^3.3",
-        "panique/php-sass": "^1.0"
+        "panique/php-sass": "^1.0",
 
         "nesbot/carbon": "^2.52",
         "rakuten-ws/rws-php-sdk": "1.*"
