@@ -13,7 +13,7 @@
         <a href="#" class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Yahoo!ショッピング</a>
       </li>
       <li class="nav-item ml-2">
-        <a href="#" class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Yahoo!ショッピング</a>
+        <a href="#" class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Amazon</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 ml-2">
