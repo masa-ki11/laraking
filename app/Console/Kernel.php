@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
+use RakutenRws_Client;
 
 class Kernel extends ConsoleKernel
 {
@@ -34,6 +35,39 @@ class Kernel extends ConsoleKernel
                 'title' => 'testa',
             ]);
             // })->daily();
+                    
+        $rakuten_apikey = config('app.rakuten_id');
+        $client = new RakutenRws_Client();
+        $client->setApplicationId($rakuten_apikey);
+        $response = $client->execute('IchibaItemSearch', array(
+            'keyword' => 'ブランド'
+        ));
+
+        if ($response->isOk()) {
+            foreach($response as $item){
+            DB::table('rakuten_items')->insert([
+                // 'title' => $item['title'],
+                // 'rank' => $item['rank'],
+                'title' => 'title',
+                'rank' => 10,
+                'itemName' => $item['itemName'],
+                'itemUrl' => $item['itemUrl'],
+                'affiliateUrl' => $item['affiliateUrl'],
+                'itemPrice' => $item['itemPrice'],
+                'reviewCount' => $item['reviewCount'],
+                'reviewAverage' => $item['reviewAverage'],
+                'imageFlag' => $item['imageFlag'],
+                'smallImageUrls' => $item['smallImageUrls'][0]['imageUrl'],
+                'shopName' => $item['shopName'],
+                'shopUrl' => $item['shopUrl'],
+                'genreId' => (int)$item['genreId'],
+                'created_at' => date("Y/m/d H:i:s")
+            ]);
+        }
+        } else {
+            echo 'Error:'.$response->getMessage();
+        }
+
         })->everyMinute()
         ->runInBackground();
         

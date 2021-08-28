@@ -53,18 +53,100 @@ class TestosController extends Controller
             'keyword' => 'ブランド'
             // 'keyword' => '宗友'
         ));
+        // $json = json_decode($response,true);
 
         // dd($response);
+        // dd(gettype($response));
+        // ※responseはobject
+        // dd(get_object_vars($response)); だめ
+        
+        // 削除用
+        DB::table('rakuten_items')->truncate();
+        DB::table('tests')->truncate();
+
         // レスポンスが正しいかを isOk() で確認することができます
         if ($response->isOk()) {
             // 配列アクセスによりレスポンスにアクセスすることができます。
             // var_dump($response['hits']);
-            // dd($response);
+            // dd($json);
+            // dd($response['isOK']);
             foreach($response as $item){
+                // dd(gettype($item)); ※array
+            // foreach($json as $item){
                 // 保存処理をここに書く予定
                 // print $item['itemName']."\n"."\n";
-                // dd($item);
+                // dd(gettype($item));
+                // dd(gettype($item['genreId']));
+                // dd(date("Y/m/d H:i:s"));
+                // $genreID = $item['genreId'];
+                // DB::table('tests')->insert([
+                //     'title' => $item['itemName'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'rank' => 10,
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'itemName' => $item['itemName'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'itemUrl' => $item['itemUrl'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'affiliateUrl' => $item['affiliateUrl'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'itemPrice' => $item['itemPrice'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'reviewCount' => $item['reviewCount'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'reviewAverage' => $item['reviewAverage'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'imageFlag' => $item['imageFlag'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'smallImageUrls' => $item['smallImageUrls'][0]['imageUrl'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'shopName' => $item['shopName'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'shopUrl' => $item['shopUrl'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'genreId' => $item['genreId'],
+                // ]);成功
+                // DB::table('rakuten_items')->insert([
+                //     'created_at' => date("Y/m/d H:i:s"),
+                // ]);成功
+                // dump($items['itemName']);
+                // foreach($items as $item){
+                    // dd($items['itemName'][100]);
+
+                
+
+                DB::table('rakuten_items')->insert([
+                    // 'title' => $item['title'],
+                    // 'rank' => $item['rank'],
+                    'title' => 'title',
+                    'rank' => 10,
+                    'itemName' => $item['itemName'],
+                    'itemUrl' => $item['itemUrl'],
+                    'affiliateUrl' => $item['affiliateUrl'],
+                    'itemPrice' => $item['itemPrice'],
+                    'reviewCount' => $item['reviewCount'],
+                    'reviewAverage' => $item['reviewAverage'],
+                    'imageFlag' => $item['imageFlag'],
+                    'smallImageUrls' => $item['smallImageUrls'][0]['imageUrl'],
+                    'shopName' => $item['shopName'],
+                    'shopUrl' => $item['shopUrl'],
+                    'genreId' => (int)$item['genreId'],
+                    'created_at' => date("Y/m/d H:i:s")
+                ]);
             }
+            // }
         } else {
             echo 'Error:'.$response->getMessage();
         }
