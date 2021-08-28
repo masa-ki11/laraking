@@ -54,6 +54,7 @@ class Kernel extends ConsoleKernel
                 'itemUrl' => $item['itemUrl'],
                 'affiliateUrl' => $item['affiliateUrl'],
                 'itemPrice' => $item['itemPrice'],
+                'itemCaption' => $item['itemCaption'],
                 'reviewCount' => $item['reviewCount'],
                 'reviewAverage' => $item['reviewAverage'],
                 'imageFlag' => $item['imageFlag'],

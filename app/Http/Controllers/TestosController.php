@@ -125,8 +125,6 @@ class TestosController extends Controller
                 // foreach($items as $item){
                     // dd($items['itemName'][100]);
 
-                
-
                 DB::table('rakuten_items')->insert([
                     // 'title' => $item['title'],
                     // 'rank' => $item['rank'],
@@ -136,6 +134,7 @@ class TestosController extends Controller
                     'itemUrl' => $item['itemUrl'],
                     'affiliateUrl' => $item['affiliateUrl'],
                     'itemPrice' => $item['itemPrice'],
+                    'itemCaption' => $item['itemCaption'],
                     'reviewCount' => $item['reviewCount'],
                     'reviewAverage' => $item['reviewAverage'],
                     'imageFlag' => $item['imageFlag'],
@@ -156,7 +155,6 @@ class TestosController extends Controller
         // ]);
 
         return view('testo', compact('response'));
-
 
     }
 
