@@ -31,48 +31,121 @@ class Kernel extends ConsoleKernel
         // 自動処理テスト用
         $schedule->call(function () {
             // DB::table('recent_users')->delete();
-            DB::table('tests')->insert([
-                'title' => 'testa',
-            ]);
+            // DB::table('tests')->insert([
+            //     'title' => 'testa',
+            // ]);
             // })->daily();
-                    
-        $rakuten_apikey = config('app.rakuten_id');
-        $client = new RakutenRws_Client();
-        $client->setApplicationId($rakuten_apikey);
-        $response = $client->execute('IchibaItemSearch', array(
-            'keyword' => 'ブランド'
-        ));
 
-        if ($response->isOk()) {
-            foreach($response as $item){
-            DB::table('rakuten_items')->insert([
-                // 'title' => $item['title'],
-                // 'rank' => $item['rank'],
-                'title' => 'title',
-                'rank' => 10,
-                'itemName' => $item['itemName'],
-                'itemUrl' => $item['itemUrl'],
-                'affiliateUrl' => $item['affiliateUrl'],
-                'itemPrice' => $item['itemPrice'],
-                'itemCaption' => $item['itemCaption'],
-                'reviewCount' => $item['reviewCount'],
-                'reviewAverage' => $item['reviewAverage'],
-                'imageFlag' => $item['imageFlag'],
-                'smallImageUrls' => $item['smallImageUrls'][0]['imageUrl'],
-                'shopName' => $item['shopName'],
-                'shopUrl' => $item['shopUrl'],
-                'genreId' => (int)$item['genreId'],
-                'created_at' => date("Y/m/d H:i:s")
-            ]);
-        }
-        } else {
-            echo 'Error:'.$response->getMessage();
-        }
-
-        })->everyMinute()
-        ->runInBackground();
+        // 総合ランキング
+        //ここから０８２８作成 デイリーのデータ取得
+        $genreID = 100283;
+        // $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey . '&genreId=' . $genreID;
         
-    }
+        //総合ランキング
+        $rakuten_apikey = config('app.rakuten_id');
+        $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey;
+        $json = file_get_contents($rakuten_url);
+        // $json = json_decode($rakuten_url);
+        $arr = json_decode($json,true);
+
+        // dd($arr);
+        foreach($arr as $a){
+            // dd($a[0]['Item']);
+            // dd($a);
+            foreach($a as $item){
+                DB::table('rakuten_items')->insert([
+                    // 'title' => $item['title'],
+                    // 'rank' => $item['rank'],
+                    'title' => 'title',
+                    'rank' => 10,
+                    'itemName' => $item['Item']['itemName'],
+                    'itemUrl' => $item['Item']['itemUrl'],
+                    'affiliateUrl' => $item['Item']['affiliateUrl'],
+                    'itemPrice' => $item['Item']['itemPrice'],
+                    'itemCaption' => $item['Item']['itemCaption'],
+                    'reviewCount' => $item['Item']['reviewCount'],
+                    'reviewAverage' => $item['Item']['reviewAverage'],
+                    'imageFlag' => $item['Item']['imageFlag'],
+                    'smallImageUrls' => $item['Item']['smallImageUrls'][0]['imageUrl'],
+                    'shopName' => $item['Item']['shopName'],
+                    'shopUrl' => $item['Item']['shopUrl'],
+                    'genreId' => (int)$item['Item']['genreId'],
+                    'created_at' => date("Y/m/d H:i:s")
+                ]);
+            }
+        }
+    })->everyMinute()->runInBackground();
+        
+        //     foreach($response as $item){
+        //     DB::table('rakuten_items')->insert([
+        //         // 'title' => $item['title'],
+        //         // 'rank' => $item['rank'],
+        //         'title' => 'title',
+        //         'rank' => 10,
+        //         'itemName' => $item['itemName'],
+        //         'itemUrl' => $item['itemUrl'],
+        //         'affiliateUrl' => $item['affiliateUrl'],
+        //         'itemPrice' => $item['itemPrice'],
+        //         'itemCaption' => $item['itemCaption'],
+        //         'reviewCount' => $item['reviewCount'],
+        //         'reviewAverage' => $item['reviewAverage'],
+        //         'imageFlag' => $item['imageFlag'],
+        //         'smallImageUrls' => $item['smallImageUrls'][0]['imageUrl'],
+        //         'shopName' => $item['shopName'],
+        //         'shopUrl' => $item['shopUrl'],
+        //         'genreId' => (int)$item['genreId'],
+        //         'created_at' => date("Y/m/d H:i:s")
+        //     ]);
+        // }
+        // } else {
+        //     echo 'Error:'.$response->getMessage();
+        // }
+        // })->everyMinute()
+        // ->runInBackground();
+
+        //ここまで]
+
+
+
+
+
+        //旧
+        // $rakuten_apikey = config('app.rakuten_id');
+        // $client = new RakutenRws_Client();
+        // $client->setApplicationId($rakuten_apikey);
+        // $response = $client->execute('IchibaItemSearch', array(
+        //     'keyword' => 'ブランド'
+        // ));
+
+        // if ($response->isOk()) {
+        //     foreach($response as $item){
+        //     DB::table('rakuten_items')->insert([
+        //         // 'title' => $item['title'],
+        //         // 'rank' => $item['rank'],
+        //         'title' => 'title',
+        //         'rank' => 10,
+        //         'itemName' => $item['itemName'],
+        //         'itemUrl' => $item['itemUrl'],
+        //         'affiliateUrl' => $item['affiliateUrl'],
+        //         'itemPrice' => $item['itemPrice'],
+        //         'itemCaption' => $item['itemCaption'],
+        //         'reviewCount' => $item['reviewCount'],
+        //         'reviewAverage' => $item['reviewAverage'],
+        //         'imageFlag' => $item['imageFlag'],
+        //         'smallImageUrls' => $item['smallImageUrls'][0]['imageUrl'],
+        //         'shopName' => $item['shopName'],
+        //         'shopUrl' => $item['shopUrl'],
+        //         'genreId' => (int)$item['genreId'],
+        //         'created_at' => date("Y/m/d H:i:s")
+        //     ]);
+        // }
+        // } else {
+        //     echo 'Error:'.$response->getMessage();
+        // }
+        // })->everyMinute()
+        // ->runInBackground();
+        
+        }     
 
     /**
      * Register the commands for the application.

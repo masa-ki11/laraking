@@ -40,7 +40,6 @@ class TestosController extends Controller
         // }
         
         $rakuten_apikey = config('app.rakuten_id');
-
         $client = new RakutenRws_Client();
         // アプリID (デベロッパーID) をセットします
         $client->setApplicationId($rakuten_apikey);
@@ -63,6 +62,26 @@ class TestosController extends Controller
         // 削除用
         DB::table('rakuten_items')->truncate();
         DB::table('tests')->truncate();
+
+        //ここから０８２８作成 デイリーのデータ取得
+        $genreID = 100283;
+        // $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey . '&genreId=' . $genreID;
+        
+        //総合ランキング
+        $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey;
+        $json = file_get_contents($rakuten_url);
+        // $json = json_decode($rakuten_url);
+        $arr = json_decode($json,true);
+
+        // dd($arr);
+        foreach($arr as $a){
+            // dd($a[0]['Item']);
+            dd($a);
+            foreach($a as $b){
+                // dd($b['Item']['itemPrice']);
+            }
+        }
+        //ここまで
 
         // レスポンスが正しいかを isOk() で確認することができます
         if ($response->isOk()) {
