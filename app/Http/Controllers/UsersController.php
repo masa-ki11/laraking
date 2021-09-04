@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\rakuten_item;
 use Illuminate\Http\Request;
 use RakutenRws_Client;
 use Illuminate\Support\Facades\DB;
 class UsersController extends Controller
 {
-    
+
     public function index () 
     {
         $rakuten_apikey = config('app.rakuten_id');
@@ -43,8 +44,9 @@ class UsersController extends Controller
         // DB::table('tests')->insert([
         //     'title' => 'testa',
         // ]);
+        $rakuten = rakuten_item::get();
         $users = User::get();
-        return view('index', compact('response', 'users'));
+        return view('index', compact('response', 'users', 'rakuten'));
 
 
         // $users = User::get();

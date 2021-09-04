@@ -25,7 +25,7 @@ class CreateRakutenItemsTable extends Migration
             $table->integer('reviewCount')->nullable();
             $table->integer('reviewAverage')->nullable();
             $table->string('imageFlag')->nullable();            
-            $table->string('smallImageUrls')->nullable();
+            $table->string('mediumImageUrls')->nullable();
             $table->string('shopName')->nullable();
             $table->string('shopUrl')->nullable();
             $table->integer('genreId')->nullable();

@@ -10171,6 +10171,41 @@ h3 {
   line-height: 1rem;
 }
 
+.itemCaption {
+  line-height: 30px;
+  position: relative;
+}
+.itemCaption.-long {
+  padding-bottom: 30px;
+}
+.itemCaption.-long button {
+  height: 50px;
+  align-items: flex-end;
+  color: #43c3ee;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 70%);
+}
+.itemCaption.is-hide {
+  overflow: hidden;
+  height: 300px;
+}
+.itemCaption.is-hide button {
+  height: 50px;
+  align-items: flex-end;
+  color: #43c3ee;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 70%);
+}
+.itemCaption button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
