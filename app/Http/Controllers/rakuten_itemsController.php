@@ -31,23 +31,28 @@ class rakuten_itemsController extends Controller
 
     public function search(Request $form_text)
         {
-            $keyword = $form_text::all();
-            // dd($keyword['textbox']);
-        
-            $rakuten_apikey = config('app.rakuten_id');
+            if(!empty($keyword)){
+                $keyword = $form_text::all();
+                // dd($keyword['textbox']);
+            
+                $rakuten_apikey = config('app.rakuten_id');
 
-            $client = new RakutenRws_Client();
-            // アプリID (デベロッパーID) をセットします
-            $client->setApplicationId($rakuten_apikey);
-            // dd(rakuten_id);
-            // アフィリエイトID をセットします(任意)
-            // $client->setAffiliateId('YOUR_AFFILIATE_ID');
+                $client = new RakutenRws_Client();
+                // アプリID (デベロッパーID) をセットします
+                $client->setApplicationId($rakuten_apikey);
+                // dd(rakuten_id);
+                // アフィリエイトID をセットします(任意)
+                // $client->setAffiliateId('YOUR_AFFILIATE_ID');
 
-            // IchibaItem/Search API から、keyword=うどん を検索します
-            $response = $client->execute('IchibaItemSearch', array(
-                'keyword' => $keyword['textbox']
-                // 'keyword' => '宗友'
-            ));
+                // IchibaItem/Search API から、keyword=うどん を検索します
+                $response = $client->execute('IchibaItemSearch', array(
+                    'keyword' => $keyword['textbox']
+                    // 'keyword' => '宗友'
+                ));
+
+            }else{
+                return redirect('/index');
+            }
         
             // dd($response);
             // レスポンスが正しいかを isOk() で確認することができます
