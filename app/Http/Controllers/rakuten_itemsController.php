@@ -31,8 +31,8 @@ class rakuten_itemsController extends Controller
 
     public function search(Request $form_text)
         {
-            if(!empty($keyword)){
-                $keyword = $form_text::all();
+            $keyword = $form_text::all();
+            if(!empty($keyword['textbox'])){
                 // dd($keyword['textbox']);
             
                 $rakuten_apikey = config('app.rakuten_id');
