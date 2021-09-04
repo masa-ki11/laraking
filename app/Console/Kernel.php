@@ -66,7 +66,7 @@ class Kernel extends ConsoleKernel
                     'reviewCount' => $item['Item']['reviewCount'],
                     'reviewAverage' => $item['Item']['reviewAverage'],
                     'imageFlag' => $item['Item']['imageFlag'],
-                    'smallImageUrls' => $item['Item']['smallImageUrls'][0]['imageUrl'],
+                    'mediumImageUrls' => $item['Item']['mediumImageUrls'][0]['imageUrl'],
                     'shopName' => $item['Item']['shopName'],
                     'shopUrl' => $item['Item']['shopUrl'],
                     'genreId' => (int)$item['Item']['genreId'],

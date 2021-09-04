@@ -76,7 +76,7 @@ class TestosController extends Controller
         // dd($arr);
         foreach($arr as $a){
             // dd($a[0]['Item']);
-            dd($a);
+            // dd($a);
             foreach($a as $b){
                 // dd($b['Item']['itemPrice']);
             }

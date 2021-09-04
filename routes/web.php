@@ -17,9 +17,13 @@ use App\Http\Controllers\TestosController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get("/index", 'UsersController@index', function() {
+Route::get("/index", 'rakuten_itemsController@index', function() {
 	return view("index");  
 });
+Route::post("/search", 'rakuten_itemsController@search');
+// Route::get('/search', function () {
+//     return view('search');
+// });
 // Route::get('/index', 'UsersController@index');
 Route::get('/testo', function () {
     return view('testo');
