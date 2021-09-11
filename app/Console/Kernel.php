@@ -53,11 +53,20 @@ class Kernel extends ConsoleKernel
             // dd($a[0]['Item']);
             // dd($a);
             foreach($a as $item){
+                // dd($item);
+
+                // ジャンル用
+                $rakuten_genre_url = 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20140222'.'?applicationId='. $rakuten_apikey .'&genreId='. $item['Item']['genreId'];
+                $json_genre = file_get_contents($rakuten_genre_url);
+                $arr_genre = json_decode($json_genre,true);
+                // dd($arr_genre['current']['genreName']);
+
                 DB::table('rakuten_items')->insert([
-                    // 'title' => $item['title'],
-                    // 'rank' => $item['rank'],
-                    'title' => 'title',
-                    'rank' => 10,
+                    // 'title'もデータが存在しないため、後ほど削除
+                    // 今はジャンルの名前を保存
+                    'title' => $arr_genre['current']['genreName'],
+                    
+                    'rank' => $item['Item']['rank'],
                     'itemName' => $item['Item']['itemName'],
                     'itemUrl' => $item['Item']['itemUrl'],
                     'affiliateUrl' => $item['Item']['affiliateUrl'],
@@ -72,6 +81,7 @@ class Kernel extends ConsoleKernel
                     'genreId' => (int)$item['Item']['genreId'],
                     'created_at' => date("Y/m/d H:i:s")
                 ]);
+
             }
         }
     })->everyMinute()->runInBackground();
