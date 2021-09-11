@@ -56,15 +56,15 @@ class Kernel extends ConsoleKernel
                 // dd($item);
 
                 // ジャンル用
-                $rakuten_genre_url = 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20140222'.'?applicationId='. $rakuten_apikey .'&genreId='. $item['Item']['genreId'];
-                $json_genre = file_get_contents($rakuten_genre_url);
-                $arr_genre = json_decode($json_genre,true);
-                // dd($arr_genre['current']['genreName']);
+                // $rakuten_genre_url = 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20140222'.'?applicationId='. $rakuten_apikey .'&genreId='. $item['Item']['genreId'];
+                // $json_genre = file_get_contents($rakuten_genre_url);
+                // $arr_genre = json_decode($json_genre,true);
+                // dd($arr_genre);
 
                 DB::table('rakuten_items')->insert([
                     // 'title'もデータが存在しないため、後ほど削除
                     // 今はジャンルの名前を保存
-                    'title' => $arr_genre['current']['genreName'],
+                    // 'title' => $arr_genre['current']['genreName'],
                     
                     'rank' => $item['Item']['rank'],
                     'itemName' => $item['Item']['itemName'],
