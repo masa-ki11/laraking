@@ -7,7 +7,7 @@
 <main class="flex-grow">
     <div class = "form-row ">
         
-        <form action="{{ url('/index')}}" method="get" class="d-flex mt-2 ml-auto mr-1">
+        <form action="{{ url('/select')}}" method="post" class="d-flex mt-2 ml-auto mr-1">
         {{ csrf_field() }}
             <input type="date" name="from" class="form-control mr-sm-2" placeholder="from_date">
             <input type="submit" value="検索">
