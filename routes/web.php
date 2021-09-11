@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get("/index", 'rakuten_itemsController@index', function() {
 	return view("index");  
 });
+Route::post("/select", 'rakuten_itemsController@select');
 Route::post("/search", 'rakuten_itemsController@search');
 // Route::get('/search', function () {
 //     return view('search');
