@@ -74,13 +74,13 @@ class TestosController extends Controller
         $arr = json_decode($json,true);
 
         // dd($arr);
-        foreach($arr as $a){
-            // dd($a[0]['Item']);
-            // dd($a);
-            foreach($a as $b){
-                // dd($b['Item']['itemPrice']);
-            }
-        }
+        // foreach($arr as $a){
+        //     // dd($a[0]['Item']);
+        //     // dd($a);
+        //     // foreach($a as $b){
+        //     //     // dd($b['Item']['itemPrice']);
+        //     // }
+        // }
         //ここまで
 
         // レスポンスが正しいかを isOk() で確認することができます
@@ -157,13 +157,25 @@ class TestosController extends Controller
                     'reviewCount' => $item['reviewCount'],
                     'reviewAverage' => $item['reviewAverage'],
                     'imageFlag' => $item['imageFlag'],
-                    'smallImageUrls' => $item['smallImageUrls'][0]['imageUrl'],
+                    'mediumImageUrls' => $item['mediumImageUrls'][0]['imageUrl'],
                     'shopName' => $item['shopName'],
                     'shopUrl' => $item['shopUrl'],
                     'genreId' => (int)$item['genreId'],
                     'created_at' => date("Y/m/d H:i:s")
                 ]);
+                // ジャンル用 カーネルと違いあり 上のテーブルに、genreNameを追加したほうがいいかも
+                // dd($item);
+                $rakuten_genre_url = 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20140222'.'?applicationId='. $rakuten_apikey .'&genreId='. $item['genreId'];
+                // dd($rakuten_genre_url);
+                $json_genre = file_get_contents($rakuten_genre_url);
+                $arr_genre = json_decode($json_genre,true);
+                // dd($arr_genre['current']['genreName']);
+                DB::table('genres')->insert([
+                    'genreTitle' => $arr_genre['current']['genreName'],
+                    'created_at' => date("Y/m/d H:i:s")
+                ]);
             }
+            
             // }
         } else {
             echo 'Error:'.$response->getMessage();
@@ -182,3 +194,6 @@ class TestosController extends Controller
 
 // 総合ランキングの情報を取得する場合（サービス固有パラメーターを無指定）
 // https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=[アプリID]
+
+// ジャンル
+// https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20140222?applicationId=[アプリID]
