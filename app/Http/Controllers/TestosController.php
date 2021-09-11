@@ -64,9 +64,13 @@ class TestosController extends Controller
         DB::table('tests')->truncate();
 
         //ここから０８２８作成 デイリーのデータ取得
-        $genreID = 100283;
-        // $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey . '&genreId=' . $genreID;
-        
+        // $genreID = 100283;
+        // $rakuten_url2 = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey . '&genreId=' . $genreID;
+        // $json2 = file_get_contents($rakuten_url2);
+        // // $json = json_decode($rakuten_url);
+        // $arr2 = json_decode($json2,true);
+        // dd($arr2);
+
         //総合ランキング
         $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey;
         $json = file_get_contents($rakuten_url);
