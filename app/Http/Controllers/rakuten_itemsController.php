@@ -141,6 +141,7 @@ class rakuten_itemsController extends Controller
             case '楽器・音響機器':
                 $model = 'App\Models\Instrument';
                 break;
+
         }
         
         if (!empty($data['from'])){

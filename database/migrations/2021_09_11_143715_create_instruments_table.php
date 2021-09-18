@@ -15,9 +15,9 @@ class CreateInstrumentsTable extends Migration
     {
         Schema::create('instruments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->nullable();
+            $table->text('title')->nullable();
             $table->integer('rank')->nullable();
-            $table->string('itemName')->nullable();
+            $table->text('itemName')->nullable();
             $table->string('itemUrl')->nullable();
             $table->string('affiliateUrl')->nullable();
             $table->integer('itemPrice')->nullable();
