@@ -5,7 +5,7 @@
 
 
 <main class="flex-grow">
-    <div class="ranking-ribbon mt-4"><h2>『{{$keyword['textbox']}}』ランキング結果</h2></div>
+    <div class="ranking-ribbon mt-4"><h2>『{{$keyword['textbox']}}』リアルタイム結果</h2></div>
     
     <?php $index=0; ?>
     @foreach($response as $item)
