@@ -43,10 +43,104 @@ class rakuten_itemsController extends Controller
         // dd($_SESSION['genre']);
         switch ($_SESSION['genre']) {
             case 'レディースファッション':
-                $model = 'App\Models\rakuten';
+                $model = 'App\Models\Ladies_fashion';
+                break;
             case 'メンズファッション':
-                $model = 'App\Models\rakuten';
+                $model = 'App\Models\Mens_fashion';
+                break;
+            case 'インナー・下着・ナイトウェア':
+                $model = 'App\Models\Inner';
+                break;
+            case 'バッグ・小物・ブランド雑貨':
+                $model = 'App\Models\Bag';
+                break;
             case '靴':
+                $model = 'App\Models\Shoes';
+                break;
+            case '腕時計':
+                $model = 'App\Models\Watch';
+                break;
+            case 'ジュエリー・アクセサリー':
+                $model = 'App\Models\Jewelry';
+                break;
+            case '食品':
+                $model = 'App\Models\Food';
+                break;
+            case 'スイーツ・お菓子':
+                $model = 'App\Models\Snack';
+                break;
+            case '水・ソフトドリンク':
+                $model = 'App\Models\Water';
+                break;
+            case 'ビール・洋酒':
+                $model = 'App\Models\Beer';
+                break;
+            case 'ワイン':
+                $model = 'App\Models\Wine';
+                break;
+            case '日本酒・焼酎':
+                $model = 'App\Models\Sake';
+                break;
+            case '日用品雑貨・文房具・手芸':
+                $model = 'App\Models\Stationary';
+                break;
+            case 'ダイエット・健康':
+                $model = 'App\Models\Diet';
+                break;
+            case '医薬品・コンタクト・介護':
+                $model = 'App\Models\Pharmaceutical';
+                break;
+            case '美容・コスメ・香水':
+                $model = 'App\Models\Beauty';
+                break;
+            case 'キッズ・ベビー・マタニティ':
+                $model = 'App\Models\Kid';
+                break;
+            case 'おもちゃ':
+                $model = 'App\Models\Toy';
+                break;
+            case '家電':
+                $model = 'App\Models\Home_appliance';
+                break;
+            case 'TV・オーディオ・カメラ':
+                $model = 'App\Models\Tv';
+                break;
+            case 'スマートフォン・タブレット':
+                $model = 'App\Models\Smart_phone';
+                break;
+            case 'パソコン・周辺機器':
+                $model = 'App\Models\Pc';
+                break;
+            case 'スポーツ・アウトドア':
+                $model = 'App\Models\Sport';
+                break;
+            case '車用品・バイク用品':
+                $model = 'App\Models\Car';
+                break;
+            case 'インテリア・寝具・収納':
+                $model = 'App\Models\Interior';
+                break;
+            case 'キッチン用品・食器・調理器具':
+                $model = 'App\Models\Kitchenware';
+                break;
+            case 'ペット・ペットグッズ':
+                $model = 'App\Models\Pet';
+                break;
+            case '花・ガーデン・DIY':
+                $model = 'App\Models\Flower';
+                break;
+            case 'サービス・リフォーム':
+                $model = 'App\Models\Service';
+                break;
+            case 'テレビゲーム':
+                $model = 'App\Models\Game';
+                break;
+            case 'ホビー':
+                $model = 'App\Models\Hobby';
+                break;
+            case '楽器・音響機器':
+                $model = 'App\Models\Instrument';
+                break;
             
         }
         
