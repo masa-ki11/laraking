@@ -24,13 +24,15 @@ class TestosController extends Controller
         $json_genre = file_get_contents($rakuten_url_genre);
         $arr_genre = json_decode($json_genre,true);
 
-        DB::table('rakuten_items')->delete();
-        DB::table('ladies_fashions')->delete();
-        $aa = new Testo();
-        $testo2 = new Testo2();
-        // $num = 0;
+        // DB::table('rakuten_items')->delete();
+        // DB::table('ladies_fashions')->delete();
+        // $aa = new Testo();
+        // $testo2 = new Testo2();
+        // // $num = 0;
         // $testo2->ladi($arr_genre);
         // $aa->sougou();        
+        $func = new Func();
+
         
         $genreIdDbName_array = [
             [100371,'ladies_fashions'],
@@ -67,6 +69,11 @@ class TestosController extends Controller
             [101164, 'hobbies'],
             [112493, 'instruments'],
         ];
+        foreach($genreIdDbName_array as $idAndDbName){
+            if($idAndDbName != null && is_array($idAndDbName)){
+                $func->SaveData($idAndDbName[0],$idAndDbName[1]);
+            }
+        }
     // $func = new Func();
     
     // foreach($genreIdDbName_array as $idAndDbName){

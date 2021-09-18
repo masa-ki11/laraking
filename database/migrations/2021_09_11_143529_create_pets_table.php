@@ -15,9 +15,9 @@ class CreatePetsTable extends Migration
     {
         Schema::create('pets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->nullable();
+            $table->text('title')->nullable();
             $table->integer('rank')->nullable();
-            $table->string('itemName')->nullable();
+            $table->text('itemName')->nullable();
             $table->string('itemUrl')->nullable();
             $table->string('affiliateUrl')->nullable();
             $table->integer('itemPrice')->nullable();
@@ -29,8 +29,7 @@ class CreatePetsTable extends Migration
             $table->string('shopName')->nullable();
             $table->string('shopUrl')->nullable();
             $table->integer('genreId')->nullable();
-            $table->timestamp('created_at', $precision = 0)->nullable();
-        });
+            $table->timestamp('created_at', $precision = 0)->nullable();        });
     }
 
     /**
