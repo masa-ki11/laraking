@@ -25,10 +25,11 @@ class rakuten_itemsController extends Controller
         } else {
             //リクエストデータがなければそのままで表示
             $rakuten = $model::whereDate('created_at', DB::raw('CURDATE()'))->get();
+            $date['from'] = date('Y-m-d');
         }
         
-    
-        return view('index', compact('rakuten'));
+        
+        return view('index', compact('rakuten', 'date'));
     }
 
     public function select(Request $request) 
@@ -40,7 +41,8 @@ class rakuten_itemsController extends Controller
             $_SESSION['genre'] = ($data['genre']);
             // dd($_SESSION['genre']);
         }
-        // dd($_SESSION['genre']);
+        $data['genre'] = $_SESSION['genre'];
+        // dd($data['genre']);
         switch ($_SESSION['genre']) {
             case 'レディースファッション':
                 $model = 'App\Models\Ladies_fashion';
@@ -151,9 +153,10 @@ class rakuten_itemsController extends Controller
         } else {
             //リクエストデータがなければそのままで表示
             $rakuten = $model::whereDate('created_at', DB::raw('CURDATE()'))->get();
+            $data['from'] = date('Y-m-d');
         }
         // dd($rakuten);
-        return view('select', compact('rakuten'));
+        return view('select', compact('rakuten', 'data'));
     
     }
     
