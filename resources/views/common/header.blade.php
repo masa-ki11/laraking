@@ -16,7 +16,7 @@
         
         
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <form action="{{ url('/select')}}" method="post" name="form1" class="form-inline my-2 my-lg-0 ml-2">
+            <form action="{{ url('/select')}}" method="post" name="form1" class="form-inline my-2 my-lg-0 ml-2">
               {{ csrf_field() }}
                 <input type="hidden" name="genre" value="レディースファッション">
                 <a href="javascript:form1.submit()">レディースファッション</a>
