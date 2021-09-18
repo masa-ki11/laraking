@@ -32,45 +32,60 @@ class Kernel extends ConsoleKernel
 
         // 自動処理テスト用
         $schedule->call(function () {
-            // DB::table('recent_users')->delete();
-            // DB::table('tests')->insert([
-            //     'title' => 'testa',
-            // ]);
-            // })->daily();
+            // //総合ランキング
+            $rakuten_apikey = config('app.rakuten_id');
+            $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey;
+            $json = file_get_contents($rakuten_url);
+            $arr = json_decode($json,true);
+            $func = new Func();
 
-        // 総合ランキング
-        //ここから０８２８作成 デイリーのデータ取得
-        $genreID = 100283;
-        // $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey . '&genreId=' . $genreID;
-        
-        // //総合ランキング
-        $rakuten_apikey = config('app.rakuten_id');
-        $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey;
-        $json = file_get_contents($rakuten_url);
-        // $json = json_decode($rakuten_url);
-        $arr = json_decode($json,true);
+            $func->sougou($arr);
 
-        $sou = new Func();
-        $sou->sougou($arr);
+            $genreIdDbName_array = [
+                [100371,'ladies_fashions'],
+                [551177, 'mens_fashions'],
+                [100433,'inners'],
+                [216131, 'bags'],
+                [558885, 'shoes'],
+                [558929, 'watches'],
+                [216129, 'jewelries'],
+                [100227, 'foods'],
+                [551167, 'snacks'],//スイーツ
+                [100316, 'waters'],
+                [510915, 'beers'],
+                [100317, 'wines'],
+                [510901, 'sakes'],
+                [215783, 'stationaries'],
+                [100938, 'diets'],
+                [551169, 'pharmaceuticals'],
+                [100939, 'beauties'],
+                [100533, 'kids'],
+                [566382, 'toys'],
+                [562637, 'home_appliances'],
+                [211742, 'tvs'],
+                [564500, 'smart_phones'],
+                [100026, 'pcs'],
+                [101070, 'sports'],
+                [503190, 'cars'],
+                [100804, 'interiors'],
+                [558944, 'kitchenware'],
+                [101213, 'pets'],
+                [100005, 'flowers'],
+                [101438, 'services'],
+                [101205, 'games'],
+                [101164, 'hobbies'],
+                [112493, 'instruments'],
+            ];
 
-        // genreIdを配列に格納→foreachで関数を実行予定
-        //レディース
-        $genreId = 100371;
-        $rakuten_url_genre = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey . '&genreId=' . $genreId;
-        $json_genre = file_get_contents($rakuten_url_genre);
-        $arr_genre = json_decode($json_genre,true);
+            foreach($genreIdDbName_array as $idAndDbName){
+                if($idAndDbName != null && is_array($idAndDbName)){
+                    $func->SaveData($idAndDbName[0],$idAndDbName[1]);
+                }
+            }
+        // })->everyMinute()->runInBackground();
+        })->everyThreeMinutes()->runInBackground();
 
-        $gen = new Func();
-        $gen->genre($arr_genre);
-
-    })->everyMinute()->runInBackground();
-
-
-
-
-
-
-        }     
+    }     
 
     /**
      * Register the commands for the application.

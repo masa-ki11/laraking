@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Func;
 use Illuminate\Http\Request;
 use RakutenRws_Client;
 // use League\Flysystem\Config;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Testo;
 use App\Models\Testo2;
+use Dotenv\Parser\Value;
 
 class TestosController extends Controller
 {
@@ -30,6 +32,49 @@ class TestosController extends Controller
         // $testo2->ladi($arr_genre);
         // $aa->sougou();        
         
+        $genreIdDbName_array = [
+            [100371,'ladies_fashions'],
+            [551177, 'mens_fashions'],
+            [100433,'inners'],
+            [216131, 'bags'],
+            [558885, 'shoes'],
+            [558929, 'watches'],
+            [216129, 'jewelries'],
+            [100227, 'foods'],
+            [551167, 'snacks'],//スイーツ
+            [100316, 'waters'],
+            [510915, 'beers'],
+            [100317, 'wines'],
+            [510901, 'sakes'],
+            [215783, 'stationaries'],
+            [100938, 'diets'],
+            [551169, 'pharmaceuticals'],
+            [100939, 'beauties'],
+            [100533, 'kids'],
+            [566382, 'toys'],
+            [562637, 'home_appliances'],
+            [211742, 'tvs'],
+            [564500, 'smart_phones'],
+            [100026, 'pcs'],
+            [101070, 'sports'],
+            [503190, 'cars'],
+            [100804, 'interiors'],
+            [558944, 'kitchenware'],
+            [101213, 'pets'],
+            [100005, 'flowers'],
+            [101438, 'services'],
+            [101205, 'games'],
+            [101164, 'hobbies'],
+            [112493, 'instruments'],
+        ];
+    // $func = new Func();
+    
+    // foreach($genreIdDbName_array as $idAndDbName){
+    //     if($idAndDbName != null && is_array($idAndDbName)){
+    //         $func->SaveData($idAndDbName[0],$idAndDbName[1]);
+    //     }
+    // }
+
 
         // // //総合ランキング
         // $rakuten_apikey = config('app.rakuten_id');
