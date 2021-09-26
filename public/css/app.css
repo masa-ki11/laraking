@@ -10006,6 +10006,41 @@ h3 {
   flex-grow: 1;
 }
 
+@media screen and (min-width: 769px) {
+  .home_image img {
+    max-width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .home_caption {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+  }
+
+  .mobile_image {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .home_image img {
+    max-width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .home_caption {
+    position: absolute;
+    top: 10%;
+    left: 3%;
+    color: white;
+  }
+
+  .pc_image {
+    display: none;
+  }
+}
 @media screen and (min-width: 768px) {
   .mobile_ranking-ribbon {
     display: none;
@@ -10243,7 +10278,7 @@ h3 {
     display: none;
   }
 
-  img {
+  .item_image img {
     width: 200px;
   }
 }
