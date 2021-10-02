@@ -38,7 +38,11 @@
                         <span>{{$index+1}}</span>位
                     </strong>
                 @endif
+                @if(!empty($item['affiliateUrl']))
+                    <a href="{{ $item['affiliateUrl'] }}">
+                @else
                     <a href="{{ $item['itemUrl'] }}">
+                @endif
                     {{ $item['itemName'] }}
                     </a>
                 </h3>
@@ -47,7 +51,7 @@
                         <div class="sm:flex-shrink-0 item_image">
                         
                             <img alt="" class="js-lozad w-55 object-cover max-w-full mx-auto" src="{{ $item['mediumImageUrls']}}" data-loaded="true">
-                            <p class="text-xs text-right mt-2">引用元: <a target="_blank" class="text-minran-blue underline" href="https://www.rakuten.co.jp/">楽天市場</a></p>
+                            <p class="text-xs text-right mt-2">引用元: <a target="_blank" class="text-minran-blue underline" href="{{ $item['shopUrl'] }}">楽天市場</a></p>
                             
                         </div>
                         <div class="sm:flex-grow ml-4 mobile_review">
