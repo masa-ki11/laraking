@@ -233,6 +233,7 @@ return [
 
     // envからAPIアプリIDを持ってくる
     'rakuten_id' => env('RAKUTEN_APPLICATION_ID', false),
+    'rakuten_aff_id' => env('RAKUTEN_AFF'),
 
 
 ];

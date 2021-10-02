@@ -18,8 +18,8 @@ class CreateHobbiesTable extends Migration
             $table->text('title')->nullable();
             $table->integer('rank')->nullable();
             $table->text('itemName')->nullable();
-            $table->string('itemUrl')->nullable();
-            $table->string('affiliateUrl')->nullable();
+            $table->text('itemUrl')->nullable();
+            $table->text('affiliateUrl')->nullable();
             $table->integer('itemPrice')->nullable();
             $table->text('itemCaption')->nullable();
             $table->integer('reviewCount')->nullable();
@@ -27,7 +27,7 @@ class CreateHobbiesTable extends Migration
             $table->string('imageFlag')->nullable();            
             $table->string('mediumImageUrls')->nullable();
             $table->string('shopName')->nullable();
-            $table->string('shopUrl')->nullable();
+            $table->text('shopUrl')->nullable();
             $table->integer('genreId')->nullable();
             $table->timestamp('created_at', $precision = 0)->nullable();
         });
