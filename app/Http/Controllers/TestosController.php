@@ -15,6 +15,20 @@ use Dotenv\Parser\Value;
 
 class TestosController extends Controller
 {
+
+    public function savetest(){
+        $rakuten_apikey = config('app.rakuten_id');
+        $aff_key = config('app.rakuten_aff_id');
+        $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' 
+        . $rakuten_apikey . '&affiliateId=' . $aff_key;
+        $json = file_get_contents($rakuten_url);
+        $arr = json_decode($json,true);
+        $func = new Func();
+        $func->sougou($arr);
+
+        return view('testo');
+    }
+
     public function index(){    
         
          // //レディース

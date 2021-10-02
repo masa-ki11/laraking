@@ -35,4 +35,4 @@ Route::get('/testo', function () {
 });
 
 // API用
-Route::get('/ooo', [TestosController::class, 'index']);
+Route::get('/ooo', [TestosController::class, 'savetest']);
