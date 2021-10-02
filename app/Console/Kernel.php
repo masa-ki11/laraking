@@ -84,9 +84,9 @@ class Kernel extends ConsoleKernel
                     $func->SaveData($idAndDbName[0],$idAndDbName[1]);
                 }
             }
-        })->daily();
+        // })->daily();
         // })->everyTenMinutes()->runInBackground();
-        // })->everyMinute()->runInBackground();
+        })->everyMinute()->runInBackground();
 
     }     
 
