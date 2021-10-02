@@ -34,12 +34,14 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             // //総合ランキング
             $rakuten_apikey = config('app.rakuten_id');
-            $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' . $rakuten_apikey;
+            $aff_key = config('app.rakuten_aff_id');
+            $rakuten_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?applicationId=' 
+            . $rakuten_apikey . '&affiliateId=' . $aff_key;
             $json = file_get_contents($rakuten_url);
             $arr = json_decode($json,true);
             $func = new Func();
-
             $func->sougou($arr);
+
 
             $genreIdDbName_array = [
                 [100371,'ladies_fashions'],
@@ -82,8 +84,9 @@ class Kernel extends ConsoleKernel
                     $func->SaveData($idAndDbName[0],$idAndDbName[1]);
                 }
             }
-        })->everyMinute()->runInBackground();
+        })->daily();
         // })->everyTenMinutes()->runInBackground();
+        // })->everyMinute()->runInBackground();
 
     }     
 
