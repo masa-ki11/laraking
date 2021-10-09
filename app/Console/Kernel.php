@@ -86,7 +86,8 @@ class Kernel extends ConsoleKernel
             }
         // })->daily();
         // })->everyTenMinutes()->runInBackground();
-        })->everyMinute()->runInBackground();
+        // })->everyMinute()->runInBackground();
+        })->cron('* * * * *');
 
     }     
 
